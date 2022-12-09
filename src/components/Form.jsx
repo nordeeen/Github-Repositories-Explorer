@@ -1,37 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { findUsers, getUserRepo, setChangeVal } from '../store/reducers';
 import UserDropdown from './UserDropdown';
-// import axios from 'axios';
 
 const Form = () => {
   const [show, setShow] = useState(false);
-  // const [data, setData] = useState([]);
   const [username, setUsername] = useState('');
-  const [user] = useState('florinpop');
-  // const [searchInput, setSearchInput] = useState('');
-  // const [dataApi, setDataApi] = useState([]);
-  // const [filteredResults, setFilteredResults] = useState([]);
 
-  // const singleUser = `https://api.github.com/users/SankThomas`
-  // const repos = `https://api.github.com/users/sankthomas/repos?per_page=5`
-  // https://api.github.com/users/sankthomas/repos?page=1&per_page=10&sort=updated
-
-  // const searchItems = (searchValue) => {
-  //   setSearchInput(searchValue);
-  //   if (searchInput !== '') {
-  //     const filteredData = dataApi.filter((item) => {
-  //       return Object.values(item)
-  //         .join('')
-  //         .toLowerCase()
-  //         .includes(searchInput.toLowerCase());
-  //     });
-  //     setFilteredResults(filteredData);
-  //   } else {
-  //     setFilteredResults(dataApi);
-  //   }
-  // };
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(findUsers(username));
+    dispatch(getUserRepo(username));
+    dispatch(
+      setChangeVal({
+        key: 'show',
+        value: true,
+      })
+    );
+
     console.log('ini data nama:', username);
     setShow(true);
   };
@@ -56,32 +44,8 @@ const Form = () => {
               Search
             </button>
           </form>
-          {show && (
-            <h3 className='mt-3 text-left font-normal text-xl'>
-              Showing users for {`"${username}"`}
-            </h3>
-          )}
-
+          {show && <p>Showing user for "{username}"</p>}
           <UserDropdown />
-          {/* <h1>viewing {user}'s repositories</h1> */}
-          {/* {!data ? (
-            <p>Loading ...</p>
-          ) : (
-            <div>
-              {data.map((item) => {
-                return (
-                  <div key={item.id}>
-                    {item.owner.login}
-                    <img
-                      src={item.owner.avatar_url}
-                      alt='logo'
-                      style={{ width: '80px', height: '80px' }}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          )} */}
         </section>
       </main>
     </>
