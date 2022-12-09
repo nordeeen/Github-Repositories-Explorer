@@ -56,7 +56,7 @@ const slicerUsers = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getUsers.fulfilled, (state, action) => {
-      console.log('data balikan dari api :', action.payload);
+      // console.log('data balikan dari api :', action.payload);
       state.values = action.payload;
     });
 

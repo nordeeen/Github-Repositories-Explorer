@@ -8,6 +8,7 @@ const service = {
   getUsers: async () => {
     try {
       const response = await api.get();
+      console.log('datas user api :', response.data);
       return response.data;
     } catch (error) {
       return error;
