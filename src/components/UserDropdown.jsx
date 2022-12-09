@@ -25,6 +25,9 @@ const UserDropdown = () => {
                 className='open:ring-1 open:h-28 open:ring-black/5 p-6 rounded-lg transform-gpu delay-75 duration-100 ease-in-out'
               >
                 <summary className='leading-6  open:shadow-lg border  text-slate-900 dark:text-white font-semibold select-none'>
+                  <p className='text-black font-semibold text-xs flex justify-start items-center'>
+                    click me!
+                  </p>
                   <h3 className='text-black font-semibold text-lg flex justify-center items-center'>
                     {findUser?.login}
                   </h3>
